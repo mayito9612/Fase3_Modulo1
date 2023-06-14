@@ -19,6 +19,8 @@ import java.util.Map;
 @RestControllerAdvice
 public class ManejadorGlobalExcepciones extends ResponseEntityExceptionHandler {
 
+
+
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         Map<String, String> errors = new TreeMap<>();
         for (FieldError error : ex.getBindingResult().getFieldErrors()) {

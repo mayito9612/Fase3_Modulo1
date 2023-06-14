@@ -1,8 +1,14 @@
 package org.bedu.java.backend.fase3_modulo1.model;
 
+import lombok.Builder;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
+@Data
+@Builder
 public class Producto {
     @PositiveOrZero(message = "El identificador del producto no puede ser un número negativo")
     private long id;

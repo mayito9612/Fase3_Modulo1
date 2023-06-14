@@ -11,7 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 
 
 @RestControllerAdvice
-public class ManejadorGlobalErrores {
+public class  ManejadorGlobalErrores {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleStatusException(MethodArgumentNotValidException ex, WebRequest request) {
         return RespuestaError.builder()

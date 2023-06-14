@@ -1,8 +1,14 @@
 package org.bedu.java.backend.fase3_modulo1.model;
 
+import lombok.Builder;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
 import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 
+@Data
+@Builder
 public class Visita {
     @PositiveOrZero(message = "El identificador de la visita no puede ser un número negativo.")
     private long id;
