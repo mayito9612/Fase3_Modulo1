@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/cliente")
 public class ClienteController {
 
     private final ClienteService clienteService;
@@ -23,9 +23,9 @@ public class ClienteController {
     public ClienteController(ClienteService clienteService) {
         this.clienteService = clienteService;
     }
-    @GetMapping("{id}")
-    public ResponseEntity<Cliente> getCliente(@PathVariable("id") Long id){
-        Optional<Cliente> clienteDb = clienteService.obtenCliente(id);
+    @GetMapping("/{clienteId}")
+    public ResponseEntity<Cliente> getCliente(@PathVariable Long clienteId){
+        Optional<Cliente> clienteDb = clienteService.obtenCliente(clienteId);
 
         if (clienteDb.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El cliente especificado no existe.");
@@ -35,29 +35,27 @@ public class ClienteController {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Cliente>> getClientes(){
         return ResponseEntity.ok(clienteService.obtenClientes());
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Void> creaCliente(@RequestBody Cliente cliente){
         Cliente clienteNuevo = clienteService.guardaCliente(cliente);
 
         return ResponseEntity.created(URI.create(String.valueOf(clienteNuevo.getId()))).build();
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> actualizaCliente(@PathVariable("id") Long clienteId, @RequestBody Cliente cliente){
+    @PutMapping("/{clienteId}")
+    public ResponseEntity<Void> actualizaCliente(@PathVariable Long clienteId, @RequestBody Cliente cliente){
         clienteService.actualizaCliente(cliente);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminaCliente(@PathVariable Long id){
-        clienteService.eliminaCliente(id);
+    @DeleteMapping("/{clienteId}")
+    public ResponseEntity<Void> eliminaCliente(@PathVariable Long clienteId){
+        clienteService.eliminaCliente(clienteId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

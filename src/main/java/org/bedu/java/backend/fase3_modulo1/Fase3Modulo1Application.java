@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan({"com.delivery.service","com.delivery.request"})
+//@ComponentScan({"com.delivery.service","com.delivery.request"})
 public class Fase3Modulo1Application {
 
 	public static void main(String[] args) {
